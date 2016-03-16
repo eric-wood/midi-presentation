@@ -133,7 +133,10 @@ module.exports = function(grunt) {
 			},
 			markdown: {
 				files: [ './*.md' ]
-			}
+			},
+      images: {
+        files: [ './images/*' ]
+      }
 		}
 
 	});
