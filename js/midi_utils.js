@@ -23,7 +23,16 @@ function decodeMessageType(type) {
 };
 
 function decodeMessageNote(note) {
-  return note;
+  var notes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  var midis = [];
+  var noteIndex = 0;
+  for(var i=0; i < 128; i++) {
+    midis.push(notes[noteIndex]);
+    noteIndex++;
+    if(noteIndex >= notes.length) { noteIndex = 0; }
+  }
+
+  return midis[note];
 };
 
 

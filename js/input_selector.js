@@ -16,9 +16,17 @@ function populateIO(midiAccess) {
 };
 
 function render() {
-  input.onmidimessage = midiMessage;
-  displayMidiDevice(input, document.getElementById('display-input'));
-  displayMidiDevice(output, document.getElementById('display-output'));
+  if(input) {
+    input.onmidimessage = midiMessage;
+    displayMidiDevice(input, document.getElementById('display-input'));
+    displayMidiDevice(output, document.getElementById('display-output'));
+  }
+
+  var note = document.getElementById('midi-note');
+  var label = document.querySelectorAll('label[for=midi-note]')[0];
+  note.addEventListener('input', function() {
+    label.innerText = `Note: (${note.value})`;
+  });
 };
 
 function populateInputs(midiAccess) {
@@ -82,11 +90,6 @@ function displayMidiDevice(device, el) {
 
   el.innerText = device.type + ` = {\n${results.join(',\n')}\n}`;
 };
-
-Reveal.addEventListener( 'slidechanged', function( event ) {
-  console.log(event.currentSlide);
-  // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-});
 
 function midiMessage(message) {
   if(message.data[0] === 248) return; // ignore clock signal

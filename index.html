@@ -40,12 +40,17 @@
 		<div class="reveal">
       <div class="slides">
         <section class="title-page" data-background="/images/title.gif">
-          <h2>Web MIDI</h2>
+          <h1>Web MIDI</h1>
           <h3>Making Browser Music</h3>
+          <h5>by Eric Wood // @eric_b_wood</h5>
         </section>
 
         <section>
-          <h2>1964</h2>
+          <img src="/images/theremin.jpg">
+        </section>
+
+        <section>
+          <h1>1964</h1>
         </section>
 
         <section>
@@ -56,7 +61,7 @@
         </section>
 
         <section>
-          <h2>June 1981</h2>
+          <h1>June 1981</h1>
         </section>
 
         <section>
@@ -64,11 +69,17 @@
         </section>
 
         <section>
+          <img src="/images/midi-logo.png">
+          <br>
+          <h3>Musical Instrument Digital Interface</h3>
+        </section>
+
+        <section>
           <img src="/images/first-midi-connection.jpg">
         </section>
 
         <section>
-          <h2>2015</h2>
+          <h1>2015</h1>
         </section>
 
         <section>
@@ -91,12 +102,15 @@ function failure() {
 };
           </code></pre>
 
-          <select id="midi-inputs"></select>
-          <select id="midi-outputs"></select>
+          <label for="midi-inputs">Inputs!</label>
+          <select name="midi-inputs" id="midi-inputs"></select>
+          <br>
+          <label for="midi-outputs">Outputs!</label>
+          <select name="midi-outputs" id="midi-outputs"></select>
         </section>
 
         <section>
-          <h3>Do Cool MIDI Stuff Now Heck Yes</h3>
+          <h3>MIDI Access</h3>
           <pre><code class="javascript" data-trim data-noescape>
 midiAccess.inputs  // Map of input devices
 midiAccess.outputs // Map of output devices
@@ -152,13 +166,13 @@ setTimeout(function() {
 
           <label for="midi-note">Note:</label>
           <input name="midi-note" id="midi-note" value="53" type="range" min="0" max="127">
-          <button id="play-note" onclick="makeNoise()">make noise</button>
+          <p><button id="play-note" onclick="makeNoise()">make noise</button></p>
         </section>
 
         <section data-state="arpeggiator">
           <h3>The Arpeggiator</h3>
           <pre><code class="javascript" data-trim>
-var notes = [], step  = 0;
+var notes = [], step = 0;
 
 input.onmidimessage = function(message) {
   if(message.data[0] !== NOTE_ON) { return; }
