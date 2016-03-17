@@ -16,6 +16,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/midi.css" id="theme">
+		<link rel="stylesheet" href="lib/css/flexboxgrid.min.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/tomorrow.css">
@@ -44,6 +45,37 @@
         </section>
 
         <section>
+          <h2>1964</h2>
+        </section>
+
+        <section>
+          <img src="/images/bobmoog.jpg">
+        </section>
+        <section>
+          <img src="/images/cool-moog.jpg">
+        </section>
+
+        <section>
+          <h2>June 1981</h2>
+        </section>
+
+        <section>
+          <img src="/images/tom-and-dave.jpg">
+        </section>
+
+        <section>
+          <img src="/images/first-midi-connection.jpg">
+        </section>
+
+        <section>
+          <h2>2015</h2>
+        </section>
+
+        <section>
+          <img src="/images/web-midi.png">
+        </section>
+
+        <section>
           <h3>Requesting MIDI Access</h3>
           <pre><code class="javascript" data-trim data-noescape>
 if(navigator.requestMIDIAccess) {
@@ -57,11 +89,66 @@ function success(midiAccess) {
 function failure() {
   console.error("Welp, this is awkward...");
 };
-</code></pre>
+          </code></pre>
 
           <select id="midi-inputs"></select>
           <select id="midi-outputs"></select>
         </section>
+
+        <section>
+          <h3>Do Cool MIDI Stuff Now Heck Yes</h3>
+          <pre><code class="javascript" data-trim data-noescape>
+midiAccess.inputs  // Map of input devices
+midiAccess.outputs // Map of output devices
+          </code></pre>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <pre><code id="display-input" class="javascript" data-trim data-noescape>
+              </code></pre>
+            </div>
+
+            <div class="col-lg-6">
+              <pre><code id="display-output" class="javascript" data-trim data-noescape>
+              </code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Reading Input</h3>
+          <pre><code id="display-output" class="javascript" data-trim data-noescape>
+input.onmidimessage = function(message) {
+  console.log(message.data);
+}
+          </code></pre>
+        </section>
+        <section>
+          <h3>MIDI Data</h3>
+          <pre><code style="font-size: 36px;" id="read-result" class="javascript" data-trim>
+message.data = [];
+          </code></pre>
+          <br>
+          <h4>Translated:</h4>
+          <pre><code id="midi-translated" class="javascript" data-trim>
+{
+  type:     null,
+  note:     null,
+  velocity: null
+}
+          </code></pre>
+        </section>
+        <section>
+          <h3>Writing Data</h3>
+          <pre><code class="javascript" data-trim>
+NOTE_ON  = 144; // Channel 1
+NOTE_OFF = 128; // Channel 1
+output.send([NOTE_ON, note, 127]);
+
+setTimeout(function() {
+  output.send([NOTE_OFF, note, null]);
+}, 1000);
+          </code></pre>
       </div>
 		</div>
 
@@ -76,7 +163,7 @@ function failure() {
 				controls: true,
 				progress: true,
 				history: true,
-				center: true,
+				center: false,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
@@ -94,6 +181,7 @@ function failure() {
 		</script>
 
     <!-- External MIDI demo scripts -->
+    <script src="/js/midi_utils.js"></script>
     <script src="/js/input_selector.js"></script>
 
 	</body>
