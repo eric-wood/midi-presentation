@@ -139,7 +139,7 @@ message.data = [];
           </code></pre>
         </section>
         <section>
-          <h3>Writing Data</h3>
+          <h3>Let's make some noise!</h3>
           <pre><code class="javascript" data-trim>
 NOTE_ON  = 144; // Channel 1
 NOTE_OFF = 128; // Channel 1
@@ -149,6 +149,40 @@ setTimeout(function() {
   output.send([NOTE_OFF, note, null]);
 }, 1000);
           </code></pre>
+
+          <label for="midi-note">Note:</label>
+          <input name="midi-note" id="midi-note" value="53" type="range" min="0" max="127">
+          <button id="play-note" onclick="makeNoise()">make noise</button>
+        </section>
+
+        <section>
+          <h3>The Arpeggiator</h3>
+          <pre><code class="javascript" data-trim>
+var notes = [], step  = 0;
+
+input.onmidimessage = function(message) {
+  if(message.data[0] !== NOTE_ON) { return; }
+  notes.push(message.data[1]);
+}
+
+function loop() {
+  if(!notes.length) { return; }
+  noteOff(notes[step]);
+  
+  if(step++ >= notes.length) { step = 0; }
+  noteOn(notes[step]);
+
+  setTimeout(loop, 120); // ~500bpm
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Behold, the mighty Arpeggiator!</h3>
+          <pre><code class="javascript" data-trim>
+notes = [];
+          </code></pre>
+        </section>
       </div>
 		</div>
 

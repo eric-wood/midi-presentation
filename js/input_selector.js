@@ -1,3 +1,6 @@
+NOTE_ON  = 144;
+NOTE_OFF = 128;
+
 // THIS IS RIDICULOUS
 NodeList.prototype.forEach = Array.prototype.forEach;
 
@@ -107,4 +110,22 @@ function midiMessage(message) {
   velocity: ${message.data[2]}
 }`;
   document.getElementById('midi-translated').innerText = json;
+};
+
+function noteOn(note, velocity) {
+  velocity = velocity || 127;
+  output.send([NOTE_ON, note, 127]);
+};
+
+function noteOff(note) {
+  output.send([NOTE_OFF, note, null]);
+};
+
+
+function makeNoise() {
+  var note = document.getElementById('midi-note').value
+  noteOn(note);
+  setTimeout(function() {
+    noteOff(note);
+  }, 1000);
 };
