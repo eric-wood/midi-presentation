@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/midi.css" id="theme">
+		<link rel="stylesheet" href="css/theme/midi.css">
 		<link rel="stylesheet" href="lib/css/flexboxgrid.min.css" id="theme">
 
 		<!-- Code syntax highlighting -->
@@ -117,7 +117,7 @@ midiAccess.outputs // Map of output devices
 
         <section>
           <h3>Reading Input</h3>
-          <pre><code id="display-output" class="javascript" data-trim data-noescape>
+          <pre><code class="javascript" data-trim data-noescape>
 input.onmidimessage = function(message) {
   console.log(message.data);
 }
@@ -155,7 +155,7 @@ setTimeout(function() {
           <button id="play-note" onclick="makeNoise()">make noise</button>
         </section>
 
-        <section>
+        <section data-state="arpeggiator">
           <h3>The Arpeggiator</h3>
           <pre><code class="javascript" data-trim>
 var notes = [], step  = 0;
@@ -179,9 +179,9 @@ function loop() {
 
         <section>
           <h3>Behold, the mighty Arpeggiator!</h3>
-          <pre><code class="javascript" data-trim>
-notes = [];
-          </code></pre>
+          <br>
+          <p data-height="268" data-theme-id="0" data-slug-hash="OyYNoJ" data-default-tab="result" data-user="eric-wood" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/eric-wood/pen/OyYNoJ/">MIDI Arpeggiator!</a> by Eric (<a href="http://codepen.io/eric-wood">@eric-wood</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
         </section>
       </div>
 		</div>

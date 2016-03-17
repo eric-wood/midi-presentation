@@ -83,6 +83,11 @@ function displayMidiDevice(device, el) {
   el.innerText = device.type + ` = {\n${results.join(',\n')}\n}`;
 };
 
+Reveal.addEventListener( 'slidechanged', function( event ) {
+  console.log(event.currentSlide);
+  // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+});
+
 function midiMessage(message) {
   if(message.data[0] === 248) return; // ignore clock signal
 
